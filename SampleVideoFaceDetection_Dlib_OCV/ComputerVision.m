@@ -221,7 +221,7 @@ typedef enum {
                     
                     cv::bitwise_or(background, foregroground, result);
                 } else {
-                    result = _cropMode == CropModeFace ? BLACK_FRAME(frame) : skyBackgroundImage;
+                    result = _videoMode == VideoModeChange ? skyBackgroundImage : frame;
                 }
             } else {
                 break;
