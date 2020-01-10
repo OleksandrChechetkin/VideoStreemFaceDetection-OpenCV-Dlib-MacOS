@@ -734,7 +734,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="YJJ-5D-kcA"/>
                                 </constraints>
-                                <popUpButtonCell key="cell" type="push" title="Circle" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="2" imageScaling="proportionallyDown" inset="2" selectedItem="lXp-LS-5fV" id="ii1-El-y9v">
+                                <popUpButtonCell key="cell" type="push" title="Face" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" tag="1" imageScaling="proportionallyDown" inset="2" selectedItem="QPC-qQ-XkA" id="ii1-El-y9v">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                     <menu key="menu" id="Ifm-x1-sq0">
@@ -743,6 +743,9 @@
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                             </menuItem>
                                             <menuItem title="Circle" state="on" tag="2" id="lXp-LS-5fV"/>
+                                            <menuItem title="Mouth" tag="3" id="erU-HB-dMF">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
                                         </items>
                                     </menu>
                                 </popUpButtonCell>

@@ -14,6 +14,7 @@
 - (void)setComputerVisionModeChange;
 - (void)setComputerVisionCropModeFace;
 - (void)setComputerVisionCropModeCircle;
+- (void)setComputerVisionCropModeMouth;
 - (void)setComputerVisionOptimizationModeSpeed;
 - (void)setComputerVisionOptimizationModeAccuracy;
     

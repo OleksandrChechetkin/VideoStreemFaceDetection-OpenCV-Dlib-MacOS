@@ -39,6 +39,10 @@
     [[ComputerVision instance] setCropMode:CropModeFace];
 }
 
+- (void)setComputerVisionCropModeMouth {
+    [[ComputerVision instance] setCropMode:CropModeMouth];
+}
+
 - (void)setComputerVisionCropModeCircle {
     [[ComputerVision instance] setCropMode:CropModeCircle];
 }

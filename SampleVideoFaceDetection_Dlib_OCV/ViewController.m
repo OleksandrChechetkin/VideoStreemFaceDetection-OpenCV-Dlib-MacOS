@@ -24,8 +24,10 @@
     AppDelegate *delegate = [[NSApplication sharedApplication] delegate];
     if (sender.selectedTag == 1) {
         [delegate setComputerVisionCropModeFace];
-    } else {
+    } else if (sender.selectedTag == 2) {
         [delegate setComputerVisionCropModeCircle];
+    } else {
+        [delegate setComputerVisionCropModeMouth];
     }
 }
 

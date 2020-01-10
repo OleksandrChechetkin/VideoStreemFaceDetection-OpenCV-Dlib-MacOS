@@ -100,9 +100,11 @@ typedef enum {
            fromFrame:(cv::Mat *)frame
    withFaceDetection:(dlib::full_object_detection *)detection
              toFrame:(cv::Mat *)output {
-    
-    if (_cropMode == CropModeFace) {
+    if (_cropMode == CropModeFace || _cropMode == CropModeMouth) {
+        int num_points;
         cv::Point face[1][28];
+        if (_cropMode == CropModeFace) {
+        num_points = 28;
         face[0][0] = cv::Point((int)detection->part(0).x()*_optimizationCoeficient, (int)detection->part(0).y()*_optimizationCoeficient);
         face[0][1] = cv::Point((int)detection->part(1).x()*_optimizationCoeficient, (int)detection->part(1).y()*_optimizationCoeficient);
         face[0][2] = cv::Point((int)detection->part(2).x()*_optimizationCoeficient, (int)detection->part(2).y()*_optimizationCoeficient);
@@ -131,10 +133,25 @@ typedef enum {
         face[0][25] = cv::Point((int)detection->part(18).x()*_optimizationCoeficient, (int)detection->part(18).y()*_optimizationCoeficient);
         face[0][26] = cv::Point((int)detection->part(17).x()*_optimizationCoeficient, (int)detection->part(17).y()*_optimizationCoeficient);
         face[0][27] = cv::Point((int)detection->part(0).x()*_optimizationCoeficient, (int)detection->part(0).y()*_optimizationCoeficient);
+        } else if (_cropMode == CropModeMouth) {
+            num_points = 13;
+            face[0][0] = cv::Point((int)detection->part(49).x()*_optimizationCoeficient, (int)detection->part(49).y()*_optimizationCoeficient);
+            face[0][1] = cv::Point((int)detection->part(50).x()*_optimizationCoeficient, (int)detection->part(50).y()*_optimizationCoeficient);
+            face[0][2] = cv::Point((int)detection->part(51).x()*_optimizationCoeficient, (int)detection->part(51).y()*_optimizationCoeficient);
+            face[0][3] = cv::Point((int)detection->part(52).x()*_optimizationCoeficient, (int)detection->part(52).y()*_optimizationCoeficient);
+            face[0][4] = cv::Point((int)detection->part(53).x()*_optimizationCoeficient, (int)detection->part(53).y()*_optimizationCoeficient);
+            face[0][5] = cv::Point((int)detection->part(54).x()*_optimizationCoeficient, (int)detection->part(54).y()*_optimizationCoeficient);
+            face[0][6] = cv::Point((int)detection->part(55).x()*_optimizationCoeficient, (int)detection->part(55).y()*_optimizationCoeficient);
+            face[0][7] = cv::Point((int)detection->part(56).x()*_optimizationCoeficient, (int)detection->part(56).y()*_optimizationCoeficient);
+            face[0][8] = cv::Point((int)detection->part(57).x()*_optimizationCoeficient, (int)detection->part(57).y()*_optimizationCoeficient);
+            face[0][9] = cv::Point((int)detection->part(58).x()*_optimizationCoeficient, (int)detection->part(58).y()*_optimizationCoeficient);
+            face[0][10] = cv::Point((int)detection->part(59).x()*_optimizationCoeficient, (int)detection->part(59).y()*_optimizationCoeficient);
+            face[0][11] = cv::Point((int)detection->part(60).x()*_optimizationCoeficient, (int)detection->part(60).y()*_optimizationCoeficient);
+            face[0][12] = cv::Point((int)detection->part(49).x()*_optimizationCoeficient, (int)detection->part(49).y()*_optimizationCoeficient);
+        }
         
         const cv::Point* faceList[1] = { face[0] };
 
-        int num_points = 28;
         int num_polygons = 1;
         int line_type = 8;
         
@@ -176,7 +193,8 @@ typedef enum {
             cv::Mat result;
             if (!frame.empty()) {
                 auto detection = [self getFaceDetectionForFrame:&frame
-                                                       extended:_cropMode == CropModeFace];
+                                                       extended:_cropMode == CropModeFace ||
+                                                                _cropMode == CropModeMouth];
                 if (detection.num_parts() > 0) {
                     cv::Mat foregroground;
                     [self extractPart:PartTypeFace

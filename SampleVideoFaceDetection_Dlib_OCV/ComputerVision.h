@@ -17,7 +17,8 @@ typedef enum {
 
 typedef enum {
     CropModeFace,
-    CropModeCircle
+    CropModeCircle,
+    CropModeMouth
 } CropMode;
 
 typedef enum {
